@@ -1,16 +1,12 @@
 ---
 php_packages:
-  - libmcrypt-devel
   - php
   - php-cli
   - php-common
   - php-devel
   - php-gd
   - php-mbstring
-  - php-mcrypt
-  - php-mysql
   - php-pdo
-  - php-pear
   - php-xml
 php_ini:
   - { section: "Date", option: "date.timezone", value: "Asia/Tokyo" }
