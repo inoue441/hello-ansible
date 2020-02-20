@@ -1,0 +1,9 @@
+---
+- hosts: servers
+  become: yes
+  become_method: su
+  roles:
+    - { role: apache2.4をインストールする, tags: apache24 }
+    - { role: phpをアンインストールする, tags: php73 }
+    - { role: php7.3をインストールする, tags: php73 }
+    - { role: apacheを再起動する, tags: apache_reload }

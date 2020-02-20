@@ -1,0 +1,38 @@
+---
+## EPEL リポジトリを登録
+- name: install / Import EPEL repository
+  yum:
+    name: epel-release
+    state: present
+    update_cache: yes
+
+## Remi リポジトリを登録
+- name: install / Import Remi repository
+  yum:
+    name: http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+    state: present
+    update_cache: yes
+
+## PHP をインストール
+- name: install / Install required packages
+  yum:
+    name: "{{ php_packages }}"
+    state: present
+    enablerepo: remi-php73
+
+## PHP の default 設定をバックアップ
+- name: configure / Backup default file
+  command: cp -a /etc/php.ini /etc/php.ini.default
+  args:
+    creates: "/etc/php.ini.default"
+
+## PHP 設定
+- name: configure / Configuration file
+  ini_file:
+    path: "/etc/php.ini"
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    state: present
+    backup: yes
+  with_items: "{{ php_ini }}"

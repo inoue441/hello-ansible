@@ -1,0 +1,6 @@
+---
+## PHP をアンインストール
+- name: Uninstall php
+  yum:
+    name: "php*"
+    state: absent

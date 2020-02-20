@@ -1,0 +1,19 @@
+---
+- name: install / Install httpd package
+  yum:
+    name: httpd
+    state: present
+
+## 自動起動 ON
+- name: configure / Enable httpd server
+  systemd:
+    name: httpd
+    enabled: yes
+
+## 開始
+- name: configure / Start httpd server
+  command: systemctl start httpd.service
+
+## 設定を反映
+- name: configure / Reload httpd server
+  command: systemctl reload httpd.service

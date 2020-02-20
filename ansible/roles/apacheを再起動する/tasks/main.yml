@@ -1,0 +1,4 @@
+---
+## 設定を反映
+- name: configure / Reload httpd server
+  command: systemctl reload httpd.service

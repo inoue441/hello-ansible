@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  controller:
+    build: ./docker/controller
+    privileged: true
+    working_dir: /ansible
+    volumes:
+      - ./ansible:/ansible
+      # - ./docker/controller/home/.ansible.cfg:/root/.ansible.cfg
+      - ./docker/controller/data:/data
+
+  target1:
+    build: ./docker/target
+    privileged: true
+    volumes:
+      - ./docker/target/data:/data
+    ports:
+      - "80:80"
+
+  target2:
+    build: ./docker/target
+    privileged: true
+    volumes:
+      - ./docker/target/data:/data
